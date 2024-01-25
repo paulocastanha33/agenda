@@ -3,19 +3,129 @@
 
 
 {% block content %}
+<style>
+        @import url('https://fonts.googleapis.com/css2? family= Lato:wght@700 & display=swap');
 
-<h2>Evento</h2>
-<form action="submit" method="POST">{% csrf_token %}
-    <label>Titulo</label><br>
-    <input type="text" name="titulo" size="23"><br>
+
+       :root{
+        --primary-color:black;
+        --secondary-color:orange;
+        --tertiary-color: gray;
+
+
+        }
+
+        body {
+            background-color: var(--tertiary-color);
+            font-size: 12px;
+            font-family:Lato, sans-serif;
+        }
+        #container{
+        height: 450px;
+        width: 360px;
+        margin: 100px auto;
+        background: #f7f7ff;
+        /*box-shadow: 5px 5px 5px var(--tertiary-color);*/
+        border-radius: 20px;
+        }
+
+        .title{
+        background-color: var(--tertiary-color);
+        color: var(--secondary-color);
+        padding: 20px;
+        text-transform: uppercase;
+        font-size: 18px;
+        font-weight: normal;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        text-align: center;
+        }
+
+        .tipsform{
+        padding-left: 20px;
+        padding-right: 20px;
+        }
+
+        .formInput{
+        background: white;
+        width: 150px;
+        padding: 5px 5px 10px 10px;
+        text-align: center;
+        font-size: 25px;
+        display: block;
+        margin: -6px auto;
+        }
+
+        .formInput:focus {
+        border: 3px solid var(--primary-color);
+        outline: none;
+        }
+
+        .formSubmit{
+        text-transform: uppercase;
+        font-weight: bold;
+        display: block;
+        margin: 30px auto;
+        background: var(--secondary-color);
+        border-radius: 5px;
+        width: 90px;
+        height: 25px;
+        font-size: 17px;
+        color: white;
+        }
+        .formLimpe{
+        text-transform: uppercase;
+        font-weight: bold;
+        display: block;
+        margin: 30px auto;
+        background: var(--secondary-color);
+        border-radius: 5px;
+        width: 90px;
+        height: 25px;
+        font-size: 17px;
+        color: white;
+        }
+
+        #resultado{
+        font-size: 20px;
+        margin-top: 5px;
+        text-align: center;
+        }
+
+
+
+        h1 {
+            color: white;
+        }
+
+        #resultado {
+            font-size: 20px;
+            margin-top: 20px;
+            border-color: black;
+            border-radius: 5px;
+        }
+
+</style>
+ <div id="container">
+    <div>
+    <h2 class="title">Evento</h2>
+    </div>
+    <div>
+
+<form action="submit" method="POST" class="tipsform" id="tipsform">{% csrf_token %}
+    <label></label><br>
+    <input type="hidden" name="id_evento" size="5" class="formInput" value="{{ evento.id }}" ><br>
+     <label><b>Titulo</b></label><br>
+    <input type="text" name="titulo" size="23" value="{{ evento.titulo }}"><br>
     <label>Data Evento</label><br>
-    <input type="datetime-local" name="data_evento"><br>
+    <input type="datetime-local" name="data_evento" value="{{ evento.get_data_input_evento }}"><br>
+    <label>Local</label><br>
+    <input type="text" name="local" value="{{ evento.local }}"><br>
     <label>Descrição</label><br>
-    <textarea name="descricao" rows="5" cols="23"></textarea><br><br>
-    <button type="submit">Salvar</button>
-    <a href="/">
-    <button type="button">Cancelar</button>
-    </a>
+    <textarea name="descricao" rows="5" cols="23" >{{ evento.descricao }}</textarea><br>
+    <button type="submit" class="formSubmit">Salvar</button><a href="/"><button type="button" class="formSubmit">Cancelar</button></a>
 </form>
 
+
 {% endblock %}
+          </div>

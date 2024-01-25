@@ -1,13 +1,55 @@
 {% extends "model-page.html" %}
 
 {%block content %}
+<style>
+   button {
+    background-color:orange;
+    align-items: center;
+    color: white;
+    padding: 2px 20px;
+    border: 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 20px;
+    text-decoration:none;
+
+}
+button:hover {
+    background-color:white;
+    color:green;
+}
+
+
+</style>
+
+<center>
   <h2 style="color:brown">Agendamentos</h2>
 <a href="evento/">
-  <button type="button">Novo Evento</button>
+  <button type="button" class="button">Novo Evento</button>
 </a>
       <ul style="font-size: 18px">
+          <table width="40%">
+              <tr bgcolor="lightgreen">
+                  <td><center><code>Evento</code></center></td>
+                  <td><center>Data/Horario</center></td>
+                  <td><center>Local</center></td>
+                  <td><center>Operações</center></td>
+              </tr>
      {% for evento in eventos %}
-   <li>{{evento.titulo}} - {{evento.get_data_evento}}</li>
+
+              <tr>
+                  <td style="width:100px"> {{evento.titulo}}</td>
+                  <td><center>{{evento.get_data_evento}}</center></td>
+                  <td><center>{{evento.local}}</center></td>
+                  <td><center><a href="evento/?id={{ evento.id }}">Alterar</a>  |
+    <a href="evento/delete/{{ evento.id }}/">Excluir</a>
+                      </center></td>
+
+
+
+
      {% endfor %}
-   </ul>
+     </tr>
+          </table>
 {% endblock %}
+    </center>
